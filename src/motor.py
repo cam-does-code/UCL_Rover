@@ -1,3 +1,5 @@
+#class is currently unused. Saving in case needed
+
 class DCMotor:      
   def __init__(self, pin1, pin2, enable_pin, min_duty=750, max_duty=1023):
         self.pin1=pin1

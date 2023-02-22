@@ -1,0 +1,87 @@
+from machine import Pin, PWM
+from time import sleep
+
+speed = 500
+stop = 0
+freq=50
+
+GO=Pin(0, Pin.IN)
+
+#Forhjul
+IN1 = PWM(Pin(23),freq)
+IN2 = PWM(Pin(13),freq)
+IN3 = PWM(Pin(12),freq)
+IN4 = PWM(Pin(14),freq)
+#Baghjul
+IN5 = PWM(Pin(22),freq)
+IN6 = PWM(Pin(1),freq)
+IN7 = PWM(Pin(3),freq)
+IN8 = PWM(Pin(21),freq)
+
+def set_speed_front(x):
+   print("Adjusting speed front")
+   IN1.duty(x)
+   IN2.duty(x)
+   IN3.duty(x)
+   IN4.duty(x)
+
+def set_speed_back(x):
+   print("Adjusting speed back")
+   IN5.duty(x)
+   IN6.duty(x)
+   IN7.duty(x)
+   IN8.duty(x)
+
+def motor_a_forward():
+   IN2.duty(stop)
+   IN1.duty(speed)
+
+def motor_a_backwards():
+   IN1.duty(stop)
+   IN2.duty(speed)
+
+def motor_a_stop():
+   IN2.duty(stop)
+   IN1.duty(stop)
+   
+def motor_b_forward():
+   IN4.duty(stop)
+   IN3.duty(speed)
+
+def motor_b_backwards():
+   IN3.duty(stop)
+   IN4.duty(speed)
+
+def motor_b_stop():
+   IN3.duty(stop)
+   IN4.duty(stop)
+   
+def motor_c_forward():
+   IN6.duty(stop)
+   IN5.duty(speed)
+
+def motor_c_backwards():
+   IN5.duty(stop)
+   IN6.duty(speed)
+
+def motor_c_stop():
+   IN5.duty(stop)
+   IN6.duty(stop)
+   
+def motor_d_forward():
+   IN8.duty(stop)
+   IN7.duty(speed)
+
+def motor_d_backwards():
+   IN7.duty(stop)
+   IN8.duty(speed)
+
+def motor_d_stop():
+   IN7.duty(stop)
+   IN8.duty(stop)
+
+motor_a_stop()
+motor_b_stop()
+motor_c_stop()
+motor_d_stop()
+

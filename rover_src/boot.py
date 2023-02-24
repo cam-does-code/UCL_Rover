@@ -32,6 +32,13 @@ while True:
        hbro.motor_c_backwards()
        hbro.motor_d_backwards()
 
+    if msg == b'left'
+        hbro.motor_a_forward
+
+    if msg == b'right'
+        hbro.motor_b_forward
+
+
     if msg == b'stop':
         hbro.motor_a_stop()
         hbro.motor_b_stop()

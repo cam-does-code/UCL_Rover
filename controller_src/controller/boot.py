@@ -1,6 +1,7 @@
 import network
 import espnow
 import machine
+from time import sleep
 
 # A WLAN interface must be active to send()/recv()
 sta = network.WLAN(network.STA_IF)  # Or network.AP_IF
@@ -76,5 +77,17 @@ class joystick(object) :
     #Value is 1 when not pressed and 0 when pressed.
     self._button = not self._js.value()
 
+controller1 = joystick(39, 34, 36)
+
+controller2 = joystick(32, 35, 33)
+
 while True:
-    
+    controller1.update()
+    print(controller1.x())
+    print(controller1.y())
+    print(controller1.button())
+    controller2.update()
+    print(controller2.x())
+    print(controller2.y())
+    print(controller2.button())
+    sleep(0.5)

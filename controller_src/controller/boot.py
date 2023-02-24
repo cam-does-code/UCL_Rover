@@ -77,9 +77,13 @@ class joystick(object) :
     #Value is 1 when not pressed and 0 when pressed.
     self._button = not self._js.value()
 
+<<<<<<< HEAD:controller_src/controller/boot.py
 controller1 = joystick(39, 34, 36)
 
 controller2 = joystick(32, 35, 33)
+=======
+#https://prod.liveshare.vsengsaas.visualstudio.com/join?9FF1FE90F4539FCB3E8A3C249CA12282BDB1
+>>>>>>> acd88a88e45aa9fe86a61a2dd6c838fa0cf7715c:controller_src/boot.py
 
 while True:
     controller1.update()

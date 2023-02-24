@@ -2,7 +2,12 @@ import hbro
 from machine import Pin
 import network
 import espnow
+import machine
 
+p4 = machine.Pin(4)
+servo1 = machine.PWM(p4,freq=50)
+# duty for servo is between 40 - 115
+servo.duty(100)
 # A WLAN interface must be active to send()/recv()
 sta = network.WLAN(network.STA_IF)
 sta.active(True)

@@ -1,6 +1,6 @@
 import network
-#import espnow
 import machine
+import espnow
 from time import sleep
 
 # A WLAN interface must be active to send()/recv()
@@ -8,15 +8,15 @@ from time import sleep
 #sta.active(True)
 #sta.disconnect()   # For ESP8266
 
-#e = espnow.ESPNow()
-#e.active(True)
-#peer = b'\xbb\xbb\xbb\xbb\xbb\xbb'   # MAC address of peer's wifi interface
-#e.add_peer(peer)
+e = espnow.ESPNow()
+e.active(True)
+peer = b'$\xd7\xeb\x0f\xc9d'   # MAC address of peer's wifi interface
+e.add_peer(peer)
 
-#e.send("Starting...")       # Send to all peers
+e.send("Starting...")       # Send to all peers
 #for i in range(100):
-    #e.send(peer, str(i)*20, True)
-    #e.send(b'end')
+#    e.send(peer, str(i)*20, True)
+#    e.send(b'end')
 
 #https://github.com/GuyCarver/MicroPython/blob/master/esp32/joystick.py
 
@@ -74,8 +74,9 @@ class joystick(object) :
     self._x = rx / dx
     self._y = ry / dy
 
-    #Value is 1 when not pressed and 0 when pressed.
+    # Value is 1 when not pressed and 0 when pressed.
     self._button = not self._js.value()
+
 
 controller1 = joystick(39, 34, 36)
 
@@ -83,18 +84,35 @@ controller2 = joystick(32, 35, 33)
 
 while True:
     controller1.update()
-    controller1.xv = str(controller1.x)
-    controller1.yv = str(controller1.y)
-    controller1.bv = str(controller1.button)
-    controller2.xv = str(controller2.x)
-    controller2.yv = str(controller2.y)
-    controller2.bv = str(controller2.button)
-    
-    print(controller1.xv)
-    print(controller1.yv)
-    print(controller1.bv)
+    print(str(controller1.x))
+    print(str(controller1.y))
+    print(str(controller1.button))
     controller2.update()
-    print(controller2.xv)
-    print(controller2.yv)
-    print(controller2.bv)
-    sleep(0.5)
+    print(str(controller2.x))
+    print(str(controller2.y))
+    print(str(controller2.button))
+    if controller1.y > 0.3:
+        e.send(b'forward')
+        sleep(0.2)
+    if controller1.y < -0.3:
+        e.send(b'backwards')
+        sleep(0.2)
+    if controller1.x > 0.3:
+        e.send(b'right')
+        sleep(0.2)
+    if controller1.x < -0.3:
+        e.send(b'left')
+        sleep(0.2)
+    if controller1.button ==  True:
+        e.send(b'stop')
+        sleep(0.2)
+    if controller2.y > 0.3:
+        e.send(b'crane')
+        sleep(10)
+    if controller2.x > 0.3:
+        e.send(b'dance')
+        sleep(10)
+    else:
+        e.send(b'stop')
+        sleep(0.2)
+

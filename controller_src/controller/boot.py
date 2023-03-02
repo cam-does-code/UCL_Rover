@@ -1,22 +1,22 @@
 import network
-import espnow
+#import espnow
 import machine
 from time import sleep
 
 # A WLAN interface must be active to send()/recv()
-sta = network.WLAN(network.STA_IF)  # Or network.AP_IF
-sta.active(True)
-sta.disconnect()   # For ESP8266
+#sta = network.WLAN(network.STA_IF)  # Or network.AP_IF
+#sta.active(True)
+#sta.disconnect()   # For ESP8266
 
-e = espnow.ESPNow()
-e.active(True)
-peer = b'\xbb\xbb\xbb\xbb\xbb\xbb'   # MAC address of peer's wifi interface
-e.add_peer(peer)
+#e = espnow.ESPNow()
+#e.active(True)
+#peer = b'\xbb\xbb\xbb\xbb\xbb\xbb'   # MAC address of peer's wifi interface
+#e.add_peer(peer)
 
-e.send("Starting...")       # Send to all peers
-for i in range(100):
-    e.send(peer, str(i)*20, True)
-    e.send(b'end')
+#e.send("Starting...")       # Send to all peers
+#for i in range(100):
+    #e.send(peer, str(i)*20, True)
+    #e.send(b'end')
 
 #https://github.com/GuyCarver/MicroPython/blob/master/esp32/joystick.py
 
@@ -83,11 +83,18 @@ controller2 = joystick(32, 35, 33)
 
 while True:
     controller1.update()
-    print(controller1.x())
-    print(controller1.y())
-    print(controller1.button())
+    controller1.xv = str(controller1.x)
+    controller1.yv = str(controller1.y)
+    controller1.bv = str(controller1.button)
+    controller2.xv = str(controller2.x)
+    controller2.yv = str(controller2.y)
+    controller2.bv = str(controller2.button)
+    
+    print(controller1.xv)
+    print(controller1.yv)
+    print(controller1.bv)
     controller2.update()
-    print(controller2.x())
-    print(controller2.y())
-    print(controller2.button())
+    print(controller2.xv)
+    print(controller2.yv)
+    print(controller2.bv)
     sleep(0.5)

@@ -1,5 +1,5 @@
-from machine import Pin, PWM
-from time import sleep
+#from machine import Pin, PWM
+#from time import sleep
 
 speed = 500
 stop = 0
@@ -14,7 +14,7 @@ IN3 = PWM(Pin(12),freq)
 IN4 = PWM(Pin(14),freq)
 #Baghjul
 IN5 = PWM(Pin(22),freq)
-IN6 = PWM(Pin(1),freq)
+IN6 = PWM(Pin(18),freq)
 IN7 = PWM(Pin(3),freq)
 IN8 = PWM(Pin(21),freq)
 

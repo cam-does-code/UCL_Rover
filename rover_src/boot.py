@@ -5,10 +5,6 @@ import machine
 import time
 import hcsr04
 
-p4 = machine.Pin(4)
-#servo1 = machine.PWM(p4,freq=50)
-# duty for servo is between 40 - 115
-#servo.duty(100)
 # A WLAN interface must be active to send()/recv()
 sta = network.WLAN(network.STA_IF)
 sta.active(True)
@@ -16,8 +12,8 @@ sta.active(True)
 
 e = espnow.ESPNow()
 e.active(True)
-#peer = b'@\x91Q\x9b\x18\x98'   # MAC address of controller
-peer = b'$\xd7\xeb\x0f\xc9d'   # MAC address of rover
+peer = b'@\x91Q\x9b\x18\x98'   # MAC address of controller
+#peer = b'$\xd7\xeb\x0f\xc9d'   # MAC address of rover
 e.add_peer(peer)
 
 servo1 = machine.PWM(machine.Pin(23), freq=50)
@@ -28,8 +24,17 @@ servo4 = machine.PWM(machine.Pin(19), freq=50)
 sensor1 = hcsr04(trigger_pin=33, echo_pin=32, echo_timeout_us=10000)
 sensor2 = hcsr04(trigger_pin=17, echo_pin=16, echo_timeout_us=10000)
 
+# hbro.motor_a_stop()
+# time.sleep(1)
+# hbro.motor_b_stop()
+# time.sleep(1)
+# hbro.motor_c_stop()
+# time.sleep(1)
+# hbro.motor_d_stop()
+
 while True:
     host, msg = e.recv()
+    print('harald')
     if msg:             # msg == None if timeout in recv()
         print(host, msg)
         if msg == b'end':

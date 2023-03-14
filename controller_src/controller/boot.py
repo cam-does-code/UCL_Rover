@@ -4,9 +4,9 @@ import espnow
 from time import sleep
 
 # A WLAN interface must be active to send()/recv()
-sta = network.WLAN(network.STA_IF)  # Or network.AP_IF
-sta.active(True)
-sta.disconnect()   # For ESP8266
+#sta = network.WLAN(network.STA_IF)  # Or network.AP_IF
+#sta.active(True)
+#sta.disconnect()   # For ESP8266
 
 e = espnow.ESPNow()
 e.active(True)
